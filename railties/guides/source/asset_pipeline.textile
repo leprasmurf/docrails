@@ -510,6 +510,14 @@ For Apache:
 Using the Apache config tricks found on the "Crave DIY":http://www.cravediy.com/59-Simple-gzip-Support-for-Apache-with-mod_rewrite.html, the following rewrite rules check the client's header to see if gzip is supported, then checks the filesystem to ensure a gzipped version exists, finally serving the gzipped file and forcing a the appropriate type.
 
 <plain>
+# Add the applicable encodings
+AddEncoding x-compress .Z
+AddEncoding x-gzip .gz .tgz
+
+# Add entries for the file types
+AddType application/x-compress .Z
+AddType application/x-gzip .gz .tgz
+
 # Turn on the Rewrite engine
 RewriteEngine On
 # Check the client headers to see if they accept gzips

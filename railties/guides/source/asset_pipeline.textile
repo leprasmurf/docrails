@@ -521,11 +521,13 @@ RewriteRule (.*\.(js|css))$ $1\.gz [L]
 
 # If we've rewritten to a .css.gz file, force text/css
 <FilesMatch .*\.css.gz>
+  Header append Vary User-Agent env=!dont-vary
   ForceType text/css
 </FilesMatch>
 
 # If we've rewritten to a .js.gz file, force application/x-javascript
 <FilesMatch .*\.js.gz>
+  Header append Vary User-Agent env=!dont-vary
   ForceType application/x-javascript
 </FilesMatch>
 </plain>
